@@ -251,6 +251,15 @@
         const caption = document.createElement('div');
         caption.className = 'image-title';
         caption.textContent = title;
+        // Tag for i18n if we have a key for this card
+        const slug = (link || '').replace(/\/$/, '').split('/').pop();
+        const RG_KEY_MAP = {
+          'expert-advisor-huda-elsherif': 'rg.expertAdvisor',
+          'shely-begum-desh-houses': 'rg.shelyBegum',
+          'house-5-php': 'rg.house5php',
+          'simmondsmills-tz-eco-village': 'rg.simmondsmills',
+        };
+        if (RG_KEY_MAP[slug]) caption.setAttribute('data-i18n', RG_KEY_MAP[slug]);
         box.appendChild(caption);
       }
       return box;
@@ -386,5 +395,7 @@
       if (scroller) scroller.scrollBy({ left: Math.max(300, scroller.clientWidth * 0.8), behavior: 'smooth' });
     };
   </script>
+  <script src="/i18n-translations.js"></script>
+  <script src="/i18n.js"></script>
 </body>
 </html>
